@@ -6,6 +6,10 @@ html {
   scroll-behavior: smooth;
 }
 
+* {
+  cursor: none !important;
+}
+
 body {
   margin: 0;
   background-color: #0a0a0a;

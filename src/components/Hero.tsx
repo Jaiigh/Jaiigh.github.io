@@ -5,29 +5,49 @@ import HeroScene from './HeroScene'
 const Hero: React.FC = () => {
   const textRef = useRef<HTMLDivElement>(null)
   const scrollRef = useRef<HTMLDivElement>(null)
+  const sceneRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ delay: 0.3 })
-      tl.from(textRef.current!.querySelector('h1'), {
+      gsap.set(sceneRef.current, { opacity: 0 })
+      const tl = gsap.timeline({ delay: 0.2 })
+      tl.from('.anim-word1', {
+        y: 100,
         opacity: 0,
-        y: 60,
-        duration: 0.8,
-        ease: 'power3.out',
+        rotateX: 90,
+        duration: 1,
+        ease: 'power4.out',
+        stagger: 0.04,
       })
+      .from('.anim-word2', {
+        y: 100,
+        opacity: 0,
+        rotateX: 90,
+        duration: 1,
+        ease: 'power4.out',
+        stagger: 0.04,
+      }, '+=0.2')
       .from(textRef.current!.querySelectorAll('p'), {
         opacity: 0,
         y: 30,
         duration: 0.8,
         ease: 'power3.out',
         stagger: 0.12,
-      }, '+=0.05')
-      .from(scrollRef.current, {
-        opacity: 0,
-        y: 10,
-        duration: 0.6,
-        ease: 'power2.out',
-      }, '-=0.3')
+      }, '-=0.4')
+      .to(sceneRef.current, { opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.6')
+      .from(scrollRef.current, { opacity: 0, y: 10, duration: 0.6, ease: 'power2.out' }, '-=0.4')
+
+      // Canvas parallax — drifts slower than page scroll
+      gsap.to(sceneRef.current, {
+        yPercent: -20,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#hero',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true,
+        },
+      })
     })
     return () => ctx.revert()
   }, [])
@@ -35,7 +55,7 @@ const Hero: React.FC = () => {
   return (
     <section className="relative h-screen overflow-hidden bg-bg" id="hero">
       {/* 3D canvas — fills section, no pointer events so text stays selectable */}
-      <div className="absolute inset-0">
+      <div ref={sceneRef} className="absolute inset-0">
         <HeroScene />
       </div>
 
@@ -44,12 +64,21 @@ const Hero: React.FC = () => {
         <div ref={textRef} className="text-center">
           <h1
             className="font-display text-foreground leading-none tracking-wide"
-            style={{ fontSize: 'clamp(4rem, 13vw, 12rem)' }}
+            style={{ fontSize: 'clamp(4rem, 13vw, 12rem)', perspective: '800px' }}
           >
-            CHANON CHIANG
+            {'CHANON'.split('').map((c, i) => (
+              <span key={i} className="anim-word1 inline-block">{c}</span>
+            ))}
+            <span className="inline-block">&nbsp;</span>
+            {'CHIANG'.split('').map((c, i) => (
+              <span key={i} className="anim-word2 inline-block">{c}</span>
+            ))}
           </h1>
-          <p className="font-mono text-accent text-xs md:text-sm tracking-widest uppercase mt-4">
-            AI · Data Science · Software Engineering
+          <p className="font-mono text-xs md:text-sm tracking-widest uppercase mt-4">
+            <span className="text-accent">AI</span>
+            <span className="text-muted"> · </span>
+            <span className="text-accent">Data Science</span>
+            <span className="text-muted"> · Software Engineering</span>
           </p>
           <p className="font-mono text-muted text-xs tracking-widest mt-2">
             Chulalongkorn University · Bangkok

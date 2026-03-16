@@ -1,6 +1,8 @@
 import React, { useRef, useEffect } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { splitChars } from '../utils/splitChars'
+import SkillsAccent from './SkillsAccent'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -46,11 +48,13 @@ const Skills: React.FC = () => {
           toggleActions: 'play none none none',
         },
       })
-      tl.from('.anim-heading', {
+      tl.from('.anim-char', {
+        y: 100,
         opacity: 0,
-        y: 40,
-        duration: 0.8,
-        ease: 'power3.out',
+        rotateX: 90,
+        duration: 1,
+        ease: 'power4.out',
+        stagger: 0.04,
       })
         .from('.anim-header', {
           opacity: 0,
@@ -66,6 +70,17 @@ const Skills: React.FC = () => {
           ease: 'power3.out',
           stagger: 0.05,
         }, '-=0.3')
+
+      gsap.to('.section-bg-text', {
+        yPercent: -15,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true,
+        },
+      })
     }, sectionRef)
     return () => ctx.revert()
   }, [])
@@ -73,11 +88,24 @@ const Skills: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      className="py-24 px-6 md:px-16 max-w-7xl mx-auto"
+      className="relative overflow-hidden py-24 px-6 md:px-16 max-w-7xl mx-auto"
       id="skills"
     >
-      <h2 className="anim-heading font-display text-foreground text-5xl md:text-7xl mb-16 tracking-wide">
+      <div
+        className="section-bg-text font-display text-foreground absolute top-0 left-0 pointer-events-none select-none whitespace-nowrap leading-none"
+        style={{ fontSize: 'clamp(80px, 15vw, 180px)', opacity: 0.03 }}
+        aria-hidden="true"
+      >
         SKILLS
+      </div>
+
+      <SkillsAccent />
+
+      <h2
+        className="font-display text-foreground text-5xl md:text-7xl mb-16 tracking-wide"
+        style={{ perspective: '600px' }}
+      >
+        {splitChars('SKILLS')}
       </h2>
 
       <div className="grid md:grid-cols-3 gap-12">
@@ -90,7 +118,7 @@ const Skills: React.FC = () => {
               {group.skills.map((skill) => (
                 <span
                   key={skill}
-                  className="anim-tag font-mono text-xs text-accent border border-accent px-3 py-1"
+                  className="anim-tag font-mono text-xs text-accent border border-accent px-3 py-1 hover:bg-[#1a0a0a] hover:text-foreground transition-colors duration-200 cursor-default"
                 >
                   {skill}
                 </span>

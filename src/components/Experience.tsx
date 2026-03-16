@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { splitChars } from "../utils/splitChars";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -52,22 +53,35 @@ const Experience: React.FC = () => {
           toggleActions: "play none none none",
         },
       });
-      tl.from(".anim-heading", {
+      tl.from(".anim-char", {
+        y: 100,
         opacity: 0,
-        y: 40,
-        duration: 0.8,
-        ease: "power3.out",
+        rotateX: 90,
+        duration: 1,
+        ease: "power4.out",
+        stagger: 0.04,
       })
         .from(
           ".anim-line",
           { scaleY: 0, duration: 0.8, ease: "power3.out", stagger: 0.2 },
           "-=0.4",
         )
-        .from(
-          ".anim-card",
-          { opacity: 0, y: 40, duration: 0.8, ease: "power3.out", stagger: 0.15 },
-          "-=0.5",
+        .to(
+          ".anim-wipe",
+          { scaleX: 0, duration: 0.6, ease: "power3.inOut", stagger: 0.15 },
+          "-=0.4",
         );
+
+      gsap.to(".section-bg-text", {
+        yPercent: -15,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
     }, sectionRef);
     return () => ctx.revert();
   }, []);
@@ -75,11 +89,21 @@ const Experience: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      className="py-24 px-6 md:px-16 max-w-7xl mx-auto"
+      className="relative overflow-hidden py-24 px-6 md:px-16 max-w-7xl mx-auto"
       id="experience"
     >
-      <h2 className="anim-heading font-display text-foreground text-5xl md:text-7xl mb-16 tracking-wide">
+      <div
+        className="section-bg-text font-display text-foreground absolute top-0 left-0 pointer-events-none select-none whitespace-nowrap leading-none"
+        style={{ fontSize: "clamp(80px, 15vw, 180px)", opacity: 0.03 }}
+        aria-hidden="true"
+      >
         EXPERIENCE
+      </div>
+      <h2
+        className="font-display text-foreground text-5xl md:text-7xl mb-16 tracking-wide"
+        style={{ perspective: "600px" }}
+      >
+        {splitChars("EXPERIENCE")}
       </h2>
 
       <div className="space-y-0">
@@ -88,10 +112,12 @@ const Experience: React.FC = () => {
             {/* Animated left border line */}
             <div
               className={`anim-line absolute left-0 top-0 w-0.5 h-full origin-top ${
-                exp.upcoming ? "bg-accent" : "bg-border"
+                "bg-accent"
               }`}
             />
-            <div className="anim-card">
+            <div className="anim-card relative overflow-hidden">
+              {/* Crimson wipe overlay */}
+              <div className="anim-wipe absolute inset-0 bg-accent z-10 origin-right" />
               <div className="flex flex-wrap items-center gap-3 mb-1">
                 <h3 className="font-display text-foreground text-2xl md:text-3xl tracking-wide">
                   {exp.company}
