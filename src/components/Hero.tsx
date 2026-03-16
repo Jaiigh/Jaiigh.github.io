@@ -4,19 +4,31 @@ import HeroScene from './HeroScene'
 
 const Hero: React.FC = () => {
   const textRef = useRef<HTMLDivElement>(null)
+  const scrollRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (!textRef.current) return
     const ctx = gsap.context(() => {
-      gsap.from(textRef.current!.children, {
+      const tl = gsap.timeline({ delay: 0.3 })
+      tl.from(textRef.current!.querySelector('h1'), {
+        opacity: 0,
+        y: 60,
+        duration: 0.8,
+        ease: 'power3.out',
+      })
+      .from(textRef.current!.querySelectorAll('p'), {
         opacity: 0,
         y: 30,
-        duration: 1,
-        delay: 0.4,
-        stagger: 0.15,
+        duration: 0.8,
+        ease: 'power3.out',
+        stagger: 0.12,
+      }, '+=0.05')
+      .from(scrollRef.current, {
+        opacity: 0,
+        y: 10,
+        duration: 0.6,
         ease: 'power2.out',
-      })
-    }, textRef)
+      }, '-=0.3')
+    })
     return () => ctx.revert()
   }, [])
 
@@ -46,7 +58,7 @@ const Hero: React.FC = () => {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 pointer-events-none">
+      <div ref={scrollRef} className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 pointer-events-none">
         <div className="font-mono text-muted text-xs uppercase tracking-widest">Scroll</div>
         <div className="w-px h-12 bg-gradient-to-b from-muted to-transparent" />
       </div>

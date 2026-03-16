@@ -39,18 +39,33 @@ const Skills: React.FC = () => {
   useEffect(() => {
     if (!sectionRef.current) return
     const ctx = gsap.context(() => {
-      gsap.from(sectionRef.current!.querySelectorAll('.anim-child'), {
-        opacity: 0,
-        y: 40,
-        duration: 0.7,
-        stagger: 0.08,
-        ease: 'power2.out',
+      const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top 80%',
           toggleActions: 'play none none none',
         },
       })
+      tl.from('.anim-heading', {
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        ease: 'power3.out',
+      })
+        .from('.anim-header', {
+          opacity: 0,
+          y: 20,
+          duration: 0.6,
+          ease: 'power3.out',
+          stagger: 0.1,
+        }, '-=0.4')
+        .from('.anim-tag', {
+          opacity: 0,
+          y: 10,
+          duration: 0.5,
+          ease: 'power3.out',
+          stagger: 0.05,
+        }, '-=0.3')
     }, sectionRef)
     return () => ctx.revert()
   }, [])
@@ -61,21 +76,21 @@ const Skills: React.FC = () => {
       className="py-24 px-6 md:px-16 max-w-7xl mx-auto"
       id="skills"
     >
-      <h2 className="anim-child font-display text-foreground text-5xl md:text-7xl mb-16 tracking-wide">
+      <h2 className="anim-heading font-display text-foreground text-5xl md:text-7xl mb-16 tracking-wide">
         SKILLS
       </h2>
 
       <div className="grid md:grid-cols-3 gap-12">
         {SKILL_GROUPS.map((group) => (
           <div key={group.label}>
-            <div className="anim-child font-mono text-accent text-xs uppercase tracking-widest mb-6 pb-3 border-b border-border">
+            <div className="anim-header font-mono text-accent text-xs uppercase tracking-widest mb-6 pb-3 border-b border-border">
               {group.label}
             </div>
             <div className="flex flex-wrap gap-2">
               {group.skills.map((skill) => (
                 <span
                   key={skill}
-                  className="anim-child font-mono text-xs text-accent border border-accent px-3 py-1"
+                  className="anim-tag font-mono text-xs text-accent border border-accent px-3 py-1"
                 >
                   {skill}
                 </span>

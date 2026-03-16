@@ -45,18 +45,29 @@ const Experience: React.FC = () => {
   useEffect(() => {
     if (!sectionRef.current) return;
     const ctx = gsap.context(() => {
-      gsap.from(sectionRef.current!.querySelectorAll(".anim-child"), {
-        opacity: 0,
-        y: 40,
-        duration: 0.7,
-        stagger: 0.15,
-        ease: "power2.out",
+      const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 80%",
           toggleActions: "play none none none",
         },
       });
+      tl.from(".anim-heading", {
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        ease: "power3.out",
+      })
+        .from(
+          ".anim-line",
+          { scaleY: 0, duration: 0.8, ease: "power3.out", stagger: 0.2 },
+          "-=0.4",
+        )
+        .from(
+          ".anim-card",
+          { opacity: 0, y: 40, duration: 0.8, ease: "power3.out", stagger: 0.15 },
+          "-=0.5",
+        );
     }, sectionRef);
     return () => ctx.revert();
   }, []);
@@ -67,37 +78,40 @@ const Experience: React.FC = () => {
       className="py-24 px-6 md:px-16 max-w-7xl mx-auto"
       id="experience"
     >
-      <h2 className="anim-child font-display text-foreground text-5xl md:text-7xl mb-16 tracking-wide">
+      <h2 className="anim-heading font-display text-foreground text-5xl md:text-7xl mb-16 tracking-wide">
         EXPERIENCE
       </h2>
 
       <div className="space-y-0">
         {EXPERIENCES.map((exp) => (
-          <div
-            key={exp.company}
-            className={`anim-child border-l-2 pl-8 pb-14 ${
-              exp.upcoming ? "border-accent" : "border-border"
-            }`}
-          >
-            <div className="flex flex-wrap items-center gap-3 mb-1">
-              <h3 className="font-display text-foreground text-2xl md:text-3xl tracking-wide">
-                {exp.company}
-              </h3>
-              {exp.upcoming && (
-                <span className="font-mono text-xs text-accent border border-accent px-2 py-0.5 uppercase tracking-widest">
-                  Upcoming
-                </span>
-              )}
+          <div key={exp.company} className="relative pl-8 pb-14">
+            {/* Animated left border line */}
+            <div
+              className={`anim-line absolute left-0 top-0 w-0.5 h-full origin-top ${
+                exp.upcoming ? "bg-accent" : "bg-border"
+              }`}
+            />
+            <div className="anim-card">
+              <div className="flex flex-wrap items-center gap-3 mb-1">
+                <h3 className="font-display text-foreground text-2xl md:text-3xl tracking-wide">
+                  {exp.company}
+                </h3>
+                {exp.upcoming && (
+                  <span className="font-mono text-xs text-accent border border-accent px-2 py-0.5 uppercase tracking-widest">
+                    Upcoming
+                  </span>
+                )}
+              </div>
+              <div className="font-mono text-accent text-xs uppercase tracking-widest mb-1">
+                {exp.role}
+              </div>
+              <div className="font-mono text-muted text-xs mb-4">
+                {exp.period}
+              </div>
+              <p className="font-mono text-muted text-sm leading-relaxed max-w-2xl">
+                {exp.description}
+              </p>
             </div>
-            <div className="font-mono text-accent text-xs uppercase tracking-widest mb-1">
-              {exp.role}
-            </div>
-            <div className="font-mono text-muted text-xs mb-4">
-              {exp.period}
-            </div>
-            <p className="font-mono text-muted text-sm leading-relaxed max-w-2xl">
-              {exp.description}
-            </p>
           </div>
         ))}
       </div>

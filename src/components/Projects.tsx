@@ -41,18 +41,26 @@ const Projects: React.FC = () => {
   useEffect(() => {
     if (!sectionRef.current) return
     const ctx = gsap.context(() => {
-      gsap.from(sectionRef.current!.querySelectorAll('.anim-child'), {
-        opacity: 0,
-        y: 40,
-        duration: 0.7,
-        stagger: 0.15,
-        ease: 'power2.out',
+      const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top 80%',
           toggleActions: 'play none none none',
         },
       })
+      tl.from('.anim-heading', {
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        ease: 'power3.out',
+      })
+        .from('.anim-card', {
+          opacity: 0,
+          y: 60,
+          duration: 0.8,
+          ease: 'power3.out',
+          stagger: 0.15,
+        }, '-=0.4')
     }, sectionRef)
     return () => ctx.revert()
   }, [])
@@ -63,7 +71,7 @@ const Projects: React.FC = () => {
       className="py-24 px-6 md:px-16 max-w-7xl mx-auto"
       id="projects"
     >
-      <h2 className="anim-child font-display text-foreground text-5xl md:text-7xl mb-16 tracking-wide">
+      <h2 className="anim-heading font-display text-foreground text-5xl md:text-7xl mb-16 tracking-wide">
         PROJECTS
       </h2>
 
@@ -71,7 +79,7 @@ const Projects: React.FC = () => {
         {PROJECTS.map((project) => (
           <div
             key={project.name}
-            className="anim-child group border border-border p-8 hover:border-accent transition-colors duration-300 flex flex-col"
+            className="anim-card group border border-border p-8 hover:border-accent transition-colors duration-300 flex flex-col"
           >
             <div className="font-mono text-accent text-xs uppercase tracking-widest mb-4">
               {project.tag}

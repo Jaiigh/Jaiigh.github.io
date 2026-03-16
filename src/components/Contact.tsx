@@ -13,9 +13,9 @@ const Contact: React.FC = () => {
       gsap.from(sectionRef.current!.querySelectorAll(".anim-child"), {
         opacity: 0,
         y: 40,
-        duration: 0.7,
+        duration: 0.8,
         stagger: 0.12,
-        ease: "power2.out",
+        ease: "power3.out",
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 80%",
