@@ -4,10 +4,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        bg: '#080808',
-        accent: '#F5A623',
+        bg: '#0a0a0a',
+        'bg-secondary': '#1a0a0a',
+        accent: '#E63946',
         foreground: '#ffffff',
-        muted: '#888888',
+        muted: '#999999',
+        border: '#2a1a1a',
       },
       fontFamily: {
         display: ['"Bebas Neue"', 'cursive'],

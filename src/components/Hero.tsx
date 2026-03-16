@@ -1,13 +1,14 @@
-import { useRef, useEffect } from 'react'
+import React, { useRef, useEffect } from 'react'
 import gsap from 'gsap'
 import HeroScene from './HeroScene'
 
-export default function Hero() {
-  const textRef = useRef(null)
+const Hero: React.FC = () => {
+  const textRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    if (!textRef.current) return
     const ctx = gsap.context(() => {
-      gsap.from(textRef.current.children, {
+      gsap.from(textRef.current!.children, {
         opacity: 0,
         y: 30,
         duration: 1,
@@ -52,3 +53,5 @@ export default function Hero() {
     </section>
   )
 }
+
+export default Hero

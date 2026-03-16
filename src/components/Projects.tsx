@@ -1,10 +1,17 @@
-import { useRef, useEffect } from 'react'
+import React, { useRef, useEffect } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const PROJECTS = [
+interface ProjectItem {
+  name: string
+  tag: string
+  description: string
+  tech: string[]
+}
+
+const PROJECTS: ProjectItem[] = [
   {
     name: 'Bulbbet',
     tag: 'Hackathon — 2nd Runner-Up',
@@ -28,12 +35,13 @@ const PROJECTS = [
   },
 ]
 
-export default function Projects() {
-  const sectionRef = useRef(null)
+const Projects: React.FC = () => {
+  const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
+    if (!sectionRef.current) return
     const ctx = gsap.context(() => {
-      gsap.from(sectionRef.current.querySelectorAll('.anim-child'), {
+      gsap.from(sectionRef.current!.querySelectorAll('.anim-child'), {
         opacity: 0,
         y: 40,
         duration: 0.7,
@@ -63,7 +71,7 @@ export default function Projects() {
         {PROJECTS.map((project) => (
           <div
             key={project.name}
-            className="anim-child group border border-[#222] p-8 hover:border-accent transition-colors duration-300 flex flex-col"
+            className="anim-child group border border-border p-8 hover:border-accent transition-colors duration-300 flex flex-col"
           >
             <div className="font-mono text-accent text-xs uppercase tracking-widest mb-4">
               {project.tag}
@@ -78,7 +86,7 @@ export default function Projects() {
               {project.tech.map((t) => (
                 <span
                   key={t}
-                  className="font-mono text-xs text-[#555] border border-[#333] px-2 py-0.5"
+                  className="font-mono text-xs text-muted border border-border px-2 py-0.5"
                 >
                   {t}
                 </span>
@@ -90,3 +98,5 @@ export default function Projects() {
     </section>
   )
 }
+
+export default Projects

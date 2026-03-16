@@ -1,10 +1,15 @@
-import { useRef, useEffect } from 'react'
+import React, { useRef, useEffect } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const SKILL_GROUPS = [
+interface SkillGroup {
+  label: string
+  skills: string[]
+}
+
+const SKILL_GROUPS: SkillGroup[] = [
   {
     label: 'ML / Data',
     skills: [
@@ -28,12 +33,13 @@ const SKILL_GROUPS = [
   },
 ]
 
-export default function Skills() {
-  const sectionRef = useRef(null)
+const Skills: React.FC = () => {
+  const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
+    if (!sectionRef.current) return
     const ctx = gsap.context(() => {
-      gsap.from(sectionRef.current.querySelectorAll('.anim-child'), {
+      gsap.from(sectionRef.current!.querySelectorAll('.anim-child'), {
         opacity: 0,
         y: 40,
         duration: 0.7,
@@ -62,7 +68,7 @@ export default function Skills() {
       <div className="grid md:grid-cols-3 gap-12">
         {SKILL_GROUPS.map((group) => (
           <div key={group.label}>
-            <div className="anim-child font-mono text-accent text-xs uppercase tracking-widest mb-6 pb-3 border-b border-[#222]">
+            <div className="anim-child font-mono text-accent text-xs uppercase tracking-widest mb-6 pb-3 border-b border-border">
               {group.label}
             </div>
             <div className="flex flex-wrap gap-2">
@@ -81,3 +87,5 @@ export default function Skills() {
     </section>
   )
 }
+
+export default Skills
