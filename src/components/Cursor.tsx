@@ -23,7 +23,7 @@ const Cursor: React.FC = () => {
     }
 
     const expandRing = () =>
-      gsap.to(ring, { scale: 1.71, backgroundColor: 'rgba(230,57,70,0.15)', duration: 0.25, ease: 'power2.out' })
+      gsap.to(ring, { scale: 1.71, backgroundColor: 'rgba(26,26,46,0.08)', duration: 0.25, ease: 'power2.out' })
 
     const onEnterInteractive = () => expandRing()
 
@@ -34,7 +34,7 @@ const Cursor: React.FC = () => {
 
     const onLeave = () => {
       gsap.to(text, { opacity: 0, duration: 0.15, ease: 'power2.in' })
-      gsap.to(ring, { scale: 1, backgroundColor: 'rgba(0,0,0,0)', duration: 0.25, ease: 'power2.out' })
+      gsap.to(ring, { scale: 1, backgroundColor: 'rgba(26,26,46,0)', duration: 0.25, ease: 'power2.out' })
     }
 
     const attached = new WeakSet<HTMLElement>()

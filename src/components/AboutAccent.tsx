@@ -14,7 +14,7 @@ const SpinningIco: React.FC = () => {
     <Float speed={1.5} rotationIntensity={0.5} floatIntensity={0.8}>
       <mesh ref={meshRef}>
         <icosahedronGeometry args={[1.2, 1]} />
-        <meshBasicMaterial color="#E63946" wireframe transparent opacity={0.15} />
+        <meshBasicMaterial color="#1A1A2E" wireframe transparent opacity={0.15} />
       </mesh>
     </Float>
   )

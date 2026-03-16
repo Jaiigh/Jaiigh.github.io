@@ -33,7 +33,7 @@ const EXPERIENCES: ExperienceItem[] = [
   {
     company: "AIS Thailand",
     role: "Software Development Intern",
-    period: "Incoming 2026",
+    period: "Incoming June 2026",
     description:
       "Upcoming role at one of Thailand's leading telecom and tech companies. Will be working within the software engineering division.",
     upcoming: true,
@@ -110,25 +110,21 @@ const Experience: React.FC = () => {
         {EXPERIENCES.map((exp) => (
           <div key={exp.company} className="relative pl-8 pb-14">
             {/* Animated left border line */}
-            <div
-              className={`anim-line absolute left-0 top-0 w-0.5 h-full origin-top ${
-                "bg-accent"
-              }`}
-            />
+            <div className="anim-line absolute left-0 top-0 w-0.5 h-full origin-top bg-foreground" />
             <div className="anim-card relative overflow-hidden">
               {/* Crimson wipe overlay */}
-              <div className="anim-wipe absolute inset-0 bg-accent z-10 origin-right" />
+              <div className="anim-wipe absolute inset-0 bg-foreground z-10 origin-right" />
               <div className="flex flex-wrap items-center gap-3 mb-1">
                 <h3 className="font-display text-foreground text-2xl md:text-3xl tracking-wide">
                   {exp.company}
                 </h3>
                 {exp.upcoming && (
-                  <span className="font-mono text-xs text-accent border border-accent px-2 py-0.5 uppercase tracking-widest">
+                  <span className="font-mono text-xs text-accent2 border border-accent2 px-2 py-0.5 uppercase tracking-widest">
                     Upcoming
                   </span>
                 )}
               </div>
-              <div className="font-mono text-accent text-xs uppercase tracking-widest mb-1">
+              <div className="font-mono text-accent2 text-xs uppercase tracking-widest mb-1">
                 {exp.role}
               </div>
               <div className="font-mono text-muted text-xs mb-4">

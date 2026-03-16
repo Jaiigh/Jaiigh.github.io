@@ -14,7 +14,7 @@ const SpinningOcta: React.FC = () => {
     <Float speed={2} rotationIntensity={0.8} floatIntensity={1}>
       <mesh ref={meshRef} scale={0.6}>
         <octahedronGeometry args={[1, 0]} />
-        <meshBasicMaterial color="#E63946" wireframe transparent opacity={0.1} />
+        <meshBasicMaterial color="#1A1A2E" wireframe transparent opacity={0.1} />
       </mesh>
     </Float>
   )

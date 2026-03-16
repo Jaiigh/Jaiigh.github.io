@@ -75,9 +75,9 @@ const Hero: React.FC = () => {
             ))}
           </h1>
           <p className="font-mono text-xs md:text-sm tracking-widest uppercase mt-4">
-            <span className="text-accent">AI</span>
+            <span className="text-accent2">AI</span>
             <span className="text-muted"> · </span>
-            <span className="text-accent">Data Science</span>
+            <span className="text-accent2">Data Science</span>
             <span className="text-muted"> · Software Engineering</span>
           </p>
           <p className="font-mono text-muted text-xs tracking-widest mt-2">

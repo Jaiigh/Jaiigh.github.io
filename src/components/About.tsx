@@ -2,7 +2,6 @@ import React, { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { splitChars } from "../utils/splitChars";
-import AboutAccent from "./AboutAccent";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -29,12 +28,24 @@ const About: React.FC = () => {
       })
         .from(
           ".anim-bio",
-          { opacity: 0, y: 30, duration: 0.8, ease: "power3.out", stagger: 0.12 },
+          {
+            opacity: 0,
+            y: 30,
+            duration: 0.8,
+            ease: "power3.out",
+            stagger: 0.12,
+          },
           "-=0.4",
         )
         .from(
           ".anim-card",
-          { opacity: 0, y: 20, duration: 0.8, ease: "power3.out", stagger: 0.1 },
+          {
+            opacity: 0,
+            y: 20,
+            duration: 0.8,
+            ease: "power3.out",
+            stagger: 0.1,
+          },
           "-=0.4",
         );
 
@@ -74,8 +85,16 @@ const About: React.FC = () => {
         end: "bottom top",
         scrub: true,
       };
-      gsap.to(".anim-stat-odd", { yPercent: -12, ease: "none", scrollTrigger: statTrigger });
-      gsap.to(".anim-stat-even", { yPercent: -8, ease: "none", scrollTrigger: statTrigger });
+      gsap.to(".anim-stat-odd", {
+        yPercent: -12,
+        ease: "none",
+        scrollTrigger: statTrigger,
+      });
+      gsap.to(".anim-stat-even", {
+        yPercent: -8,
+        ease: "none",
+        scrollTrigger: statTrigger,
+      });
     }, sectionRef);
     return () => ctx.revert();
   }, []);
@@ -94,8 +113,6 @@ const About: React.FC = () => {
       >
         ABOUT
       </div>
-
-      <AboutAccent />
 
       <div className="grid md:grid-cols-2 gap-16 items-start">
         {/* Bio */}
@@ -121,7 +138,9 @@ const About: React.FC = () => {
         {/* Stats */}
         <div className="grid grid-cols-2 gap-4">
           <div className="anim-card anim-stat-odd border border-border p-6">
-            <div className="gpa-counter font-display text-accent text-5xl">0.00</div>
+            <div className="gpa-counter font-display text-accent2 text-5xl">
+              0.00
+            </div>
             <div className="font-mono text-muted text-xs uppercase tracking-widest mt-2">
               GPA
             </div>
@@ -138,7 +157,7 @@ const About: React.FC = () => {
 
           <div className="anim-card anim-stat-odd border border-border p-6">
             <div className="font-display text-foreground text-2xl leading-tight">
-              IELTS 7.5
+              IELTS 8
             </div>
             <div className="font-mono text-muted text-xs uppercase tracking-widest mt-2">
               English
@@ -154,9 +173,13 @@ const About: React.FC = () => {
             </div>
           </div>
 
-          <div className="anim-card col-span-2 border border-accent p-6">
-            <div className="font-mono text-accent text-xs uppercase tracking-widest">
-              ● Open to Internships &amp; Full-Time
+          <div className="anim-card col-span-2 border border-border p-6">
+            <div className="font-mono text-xs uppercase tracking-widest">
+              <span className="text-accent2">●</span>
+              <span className="text-muted">
+                {" "}
+                Open to Internships &amp; Part-Time
+              </span>
             </div>
           </div>
         </div>

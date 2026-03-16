@@ -10,9 +10,14 @@ html {
   cursor: none !important;
 }
 
+::selection {
+  background-color: #C0392B;
+  color: #ffffff;
+}
+
 body {
   margin: 0;
-  background-color: #0a0a0a;
+  background-color: #F5F0E8;
   color: #ffffff;
   font-family: 'DM Mono', ui-monospace, monospace;
   -webkit-font-smoothing: antialiased;

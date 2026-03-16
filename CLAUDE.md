@@ -4,7 +4,7 @@
 
 Personal portfolio website for Chanon Chiang (Jay), Computer
 Engineering student at Chulalongkorn University, Bangkok. GPA 3.31.
-Trilingual: English (IELTS 7.5), Chinese (HSK 3), Thai (native).
+Trilingual: English (IELTS 8), Chinese (HSK 3), Thai (native).
 GitHub: github.com/Jaiigh
 
 ## Goal
@@ -37,22 +37,26 @@ These are the ONLY correct values. If any file contradicts these,
 the file is wrong — update it to match.
 
 ### Colors (tailwind.config.js)
-- accent: #E63946  ← the ONLY accent color, never amber/gold
+
+- accent: #E63946 ← the ONLY accent color, never amber/gold
 - background: #0a0a0a
 - secondary: #1a0a0a
 - border: #2a1a1a
 - text: #ffffff
 - muted: #999999
 
-NEVER use: #F5A623, #f5a623, amber-*, yellow-*, orange-*
+NEVER use: #F5A623, #f5a623, amber-_, yellow-_, orange-\*
 If you see amber or gold anywhere, it is a bug — fix it immediately.
 
 ### Fonts (index.html Google Fonts import)
+
 Must import BOTH fonts via Google Fonts link tag:
+
 - Bebas Neue — used for ALL headings, section titles, hero name
 - DM Mono — used for ALL body text, labels, tags, descriptions
 
 font-family assignments in index.css:
+
 - .font-display or h1/h2/h3 → 'Bebas Neue', cursive
 - body, p, span, div → 'DM Mono', monospace
 

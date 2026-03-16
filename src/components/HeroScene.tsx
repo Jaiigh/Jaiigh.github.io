@@ -8,7 +8,7 @@ const EDGE_THRESHOLD = 4.5;
 const SPREAD = { x: 12, y: 7, z: 6 };
 const ORBIT_RADIUS = 14;
 const ORBIT_SPEED = 0.06;
-const CRIMSON = new THREE.Color("#E63946");
+const NAVY = new THREE.Color("#1A1A2E");
 
 // ─── Seeded pseudo-random (LCG) — deterministic across HMR ───────────────────
 function seededRandom(seed: number): () => number {
@@ -161,7 +161,7 @@ const NeuralNetwork: React.FC<NeuralNetworkProps> = ({ mouse }) => {
     <group>
       {/* Edges — single draw call */}
       <lineSegments geometry={edgeGeometry}>
-        <lineBasicMaterial color={CRIMSON} transparent opacity={0.45} />
+        <lineBasicMaterial color={NAVY} transparent opacity={0.15} />
       </lineSegments>
 
       {/* Nodes — instanced, single draw call */}
@@ -170,13 +170,7 @@ const NeuralNetwork: React.FC<NeuralNetworkProps> = ({ mouse }) => {
         args={[undefined, undefined, NODE_COUNT]}
       >
         <sphereGeometry args={[1, 8, 8]} />
-        <meshStandardMaterial
-          color={CRIMSON}
-          emissive={CRIMSON}
-          emissiveIntensity={0.5}
-          roughness={0.5}
-          metalness={0.3}
-        />
+        <meshBasicMaterial color={NAVY} />
       </instancedMesh>
     </group>
   );
@@ -199,12 +193,10 @@ const HeroScene: React.FC = () => {
     <Canvas
       frameloop="always"
       camera={{ position: [0, 0, ORBIT_RADIUS], fov: 55 }}
-      style={{ background: "#0a0a0a", pointerEvents: "none" }}
-      gl={{ alpha: false, antialias: true }}
+      style={{ pointerEvents: "none" }}
+      gl={{ alpha: true, antialias: true }}
     >
-      <ambientLight intensity={0.6} />
-      <pointLight position={[8, 8, 8]} intensity={1.5} color="#E63946" />
-      <pointLight position={[-8, -6, -4]} intensity={0.4} color="#ffffff" />
+      <ambientLight intensity={0.3} />
       <NeuralNetwork mouse={mouse} />
     </Canvas>
   );

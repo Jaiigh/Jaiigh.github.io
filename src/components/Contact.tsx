@@ -65,44 +65,48 @@ const Contact: React.FC = () => {
         {splitChars("CONTACT")}
       </h2>
 
-      <div className="grid md:grid-cols-3 gap-4">
-        <a
-          href="mailto:chanonchiang2004@gmail.com"
-          className="anim-child group border border-border p-8 hover:border-accent hover:bg-[#1a0a0a] hover:-translate-y-1 transition-[border-color,background-color,transform] duration-300"
-        >
-          <div className="font-mono text-muted text-xs uppercase tracking-widest mb-3">
-            Email
-          </div>
-          <div className="flex items-baseline justify-between">
-            <div className="font-display text-foreground text-xl group-hover:text-accent transition-colors duration-300">
-              chanonchiang2004@gmail.com
+      <div className="flex flex-col md:flex-row gap-4">
+        <div className="anim-child flex-1">
+          <a
+            href="mailto:chanonchiang2004@gmail.com"
+            className="group flex flex-col h-full bg-secondary border border-border p-8 hover:border-foreground hover:bg-background transition-colors duration-300"
+          >
+            <div className="font-mono text-muted text-xs uppercase tracking-widest mb-3">
+              Email
             </div>
-            <span className="font-mono text-accent text-sm opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-[opacity,transform] duration-300 ml-2">
-              →
-            </span>
-          </div>
-        </a>
-
-        <a
-          href="https://github.com/Jaiigh"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="anim-child group border border-border p-8 hover:border-accent hover:bg-[#1a0a0a] hover:-translate-y-1 transition-[border-color,background-color,transform] duration-300"
-        >
-          <div className="font-mono text-muted text-xs uppercase tracking-widest mb-3">
-            GitHub
-          </div>
-          <div className="flex items-baseline justify-between">
-            <div className="font-display text-foreground text-xl group-hover:text-accent transition-colors duration-300">
-              github.com/Jaiigh
+            <div className="flex items-baseline justify-between">
+              <div className="font-display text-foreground text-xl">
+                chanonchiang2004@gmail.com
+              </div>
+              <span className="font-mono text-foreground text-sm opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-[opacity,transform] duration-300 ml-2">
+                →
+              </span>
             </div>
-            <span className="font-mono text-accent text-sm opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-[opacity,transform] duration-300 ml-2">
-              →
-            </span>
-          </div>
-        </a>
+          </a>
+        </div>
 
-        <div className="anim-child border border-border p-8">
+        <div className="anim-child flex-1">
+          <a
+            href="https://github.com/Jaiigh"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex flex-col h-full bg-secondary border border-border p-8 hover:border-foreground hover:bg-background transition-colors duration-300"
+          >
+            <div className="font-mono text-muted text-xs uppercase tracking-widest mb-3">
+              GitHub
+            </div>
+            <div className="flex items-baseline justify-between">
+              <div className="font-display text-foreground text-xl">
+                github.com/Jaiigh
+              </div>
+              <span className="font-mono text-foreground text-sm opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-[opacity,transform] duration-300 ml-2">
+                →
+              </span>
+            </div>
+          </a>
+        </div>
+
+        <div className="anim-child flex-1 bg-secondary border border-border p-8">
           <div className="font-mono text-muted text-xs uppercase tracking-widest mb-3">
             Location
           </div>

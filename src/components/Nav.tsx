@@ -47,11 +47,11 @@ const Nav: React.FC = () => {
       className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-16 py-4 border-b border-border transition-all duration-300 ${
         scrolled ? 'backdrop-blur-md' : 'backdrop-blur-sm'
       }`}
-      style={{ backgroundColor: 'rgba(10, 10, 10, 0.85)' }}
+      style={{ backgroundColor: 'rgba(245, 240, 232, 0.92)' }}
     >
       <button
         onClick={() => scrollTo('hero')}
-        className="font-display text-accent text-2xl leading-none tracking-wide"
+        className="font-display text-accent2 text-2xl leading-none tracking-wide"
       >
         CC
       </button>
@@ -61,7 +61,7 @@ const Nav: React.FC = () => {
             key={id}
             onClick={() => scrollTo(id)}
             className={`group relative font-mono text-xs uppercase tracking-widest transition-colors duration-200 ${
-              active === id ? 'text-accent' : 'text-muted hover:text-foreground'
+              active === id ? 'text-foreground font-medium' : 'text-muted hover:text-foreground'
             }`}
           >
             {label}
