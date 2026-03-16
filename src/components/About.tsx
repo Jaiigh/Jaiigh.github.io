@@ -124,14 +124,14 @@ const About: React.FC = () => {
             {splitChars("ABOUT")}
           </h2>
           <p className="anim-bio font-mono text-muted text-sm leading-relaxed mb-4">
-            I'm Jay — a Computer Engineering student at Chulalongkorn
-            University, Bangkok. My background is in full-stack development, but
-            my focus is shifting toward AI and data science.
+            I'm Jay, a Computer Engineering student at Chulalongkorn University,
+            Bangkok. My background is in full-stack development, but my focus is
+            shifting toward AI and data science.
           </p>
           <p className="anim-bio font-mono text-muted text-sm leading-relaxed">
             I've worked on NLP systems and AI workflow platforms in internships,
             and I'm actively building toward a career in ML engineering. Still
-            learning — but learning fast.
+            learning, but learning fast.
           </p>
         </div>
 
