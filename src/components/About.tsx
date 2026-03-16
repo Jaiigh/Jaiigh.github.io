@@ -125,13 +125,13 @@ const About: React.FC = () => {
           </h2>
           <p className="anim-bio font-mono text-muted text-sm leading-relaxed mb-4">
             I'm Jay — a Computer Engineering student at Chulalongkorn
-            University, Bangkok. I build production AI systems during the day
-            and explore ML pipelines by night.
+            University, Bangkok. My background is in full-stack development, but
+            my focus is shifting toward AI and data science.
           </p>
           <p className="anim-bio font-mono text-muted text-sm leading-relaxed">
-            Currently transitioning from full-stack engineering toward AI, data
-            science, and ML engineering. I care about systems that scale and
-            models that ship.
+            I've worked on NLP systems and AI workflow platforms in internships,
+            and I'm actively building toward a career in ML engineering. Still
+            learning — but learning fast.
           </p>
         </div>
 
