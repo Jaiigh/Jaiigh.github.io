@@ -108,7 +108,7 @@ const Projects: React.FC = () => {
           <div
             key={project.name}
             data-cursor="view"
-            className="anim-card group relative overflow-hidden bg-secondary border border-border p-8 hover:border-foreground hover:bg-background hover:-translate-y-1 transition-[border-color,background-color,transform] duration-300 flex flex-col"
+            className="anim-card group relative overflow-hidden bg-secondary border border-border p-8 hover:bg-background hover:-translate-y-1 transition-[border-color,background-color,transform] duration-300 flex flex-col"
           >
             {/* Background texture number */}
             <div
