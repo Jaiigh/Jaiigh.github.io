@@ -117,7 +117,7 @@ const Contact: React.FC = () => {
       </div>
 
       <div className="anim-child mt-16 border-t border-border pt-8 font-mono text-muted text-xs text-center">
-        © 2025 Chanon Chiang. Built with React, Three.js &amp; GSAP.
+        © 2026 Chanon Chiang. Built with React, Three.js &amp; GSAP.
       </div>
     </section>
   );
